@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYgosDHggD_IOWLrqlT4qP2I5vW7nhLbM"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<head>
+  <style>
+    #map {
+      height:420px;
+      width:600px;
+    }
+    h2 {
+      margin-bottom:0;
+      margin-top: 0;
+    }
+    .wrapper {
+      text-align: center;
+    }
+
+    .button {
+      position: absolute;
+      top: 50%;
+    }
+  </style>
+</head>
+<body>
+<h1><center>CSE5335-project1</center></h1>
+<br>
+<br>
+<div ng-app="myApp" ng-controller="customersCtrl">
+  <div class="wrapper">
+  <button class="btn btn-info btn-lg" ng-click="clickButton()">Click Me!</button>
+  </div>
+  <br>
+  <br>
+  <div>
+    <table class="table table-bordered" ng-if="names">
+      <tr>
+        <th>City</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Population</th>
+      </tr>
+      <tr ng-repeat="x in names">
+        <td>{{ x.City }}</td>
+        <td>{{ x.lat }}</td>
+        <td>{{ x.lng }}</td>
+        <td>{{ x.population }}</td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <div id="map"></div>
+  <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+    <!--a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a-->
+  </div>
+  <br>
+  <div id="chart_div"></div>
+</div>
+
+
+
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('customersCtrl', ['$scope', '$http', function($scope, $http) {
+    $scope.clickButton = function() {
+      console.log('here');
+      $http.get("data.json")
+              .then(function (response) {
+                $scope.names = response.data.records;
+
+                //google maps
+                var mapOptions = {
+                  zoom: 6,
+                  center: new google.maps.LatLng(31.0000, -97.0000),
+                  mapTypeId: google.maps.MapTypeId.TERRAIN
+                }
+                //intialize the maps obj
+                $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+                //initialize the marker
+                $scope.markers = [];
+                //initialize info window
+                var infoWindow = new google.maps.InfoWindow();
+                //function to create a marker for every record
+                var createMarker = function (info){
+
+                  var marker = new google.maps.Marker({
+                    map: $scope.map,
+                    position: new google.maps.LatLng(info.lat, info.lng),
+                    title: info.City
+                  });
+                  marker.content = '<div class="infoWindowContent">' + "Population : " + info.population + '</div>';
+
+                  google.maps.event.addListener(marker, 'click', function(){
+                    infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+                    infoWindow.open($scope.map, marker);
+                  });
+                  $scope.markers.push(marker);
+
+                }
+                // call create marker for every record read from json file
+                for (i = 0; i < response.data.records.length; i++){
+                  createMarker(response.data.records[i]);
+                }
+
+                $scope.openInfoWindow = function(e, selectedMarker){
+                  e.preventDefault();
+                  google.maps.event.trigger(selectedMarker, 'click');
+                }
+
+                //google charts
+                google.charts.load('current', {packages: ['corechart', 'bar']});
+                google.charts.setOnLoadCallback(drawBasic);
+
+                function drawBasic() {
+
+                  var data = google.visualization.arrayToDataTable([
+                    ['City', 'Population',],
+                    [response.data.records[0].City, parseInt(response.data.records[0].population)],
+                    [response.data.records[1].City, parseInt(response.data.records[1].population)],
+                    [response.data.records[2].City, parseInt(response.data.records[2].population)],
+                    [response.data.records[3].City, parseInt(response.data.records[3].population)],
+                    [response.data.records[4].City, parseInt(response.data.records[4].population)],
+                    [response.data.records[5].City, parseInt(response.data.records[5].population)],
+                    [response.data.records[6].City, parseInt(response.data.records[6].population)],
+                    [response.data.records[7].City, parseInt(response.data.records[7].population)],
+                    [response.data.records[8].City, parseInt(response.data.records[8].population)],
+                    [response.data.records[9].City, parseInt(response.data.records[9].population)]
+                  ]);
+
+                  var options = {
+                    title: ' Population of various cities in Texas',
+                    width: 600,
+                    height: 400,
+                    bar: {groupWidth: "95%"},
+                    legend: { position: 'top'},
+                    hAxis: {
+                      title: 'Population',
+                      titleTextStyle:{bold: true},
+                      minValue: 0,
+                      bold: true
+                    },
+                    vAxis: {
+                      title: 'City',
+                      titleTextStyle:{bold: true}
+                    },
+                    isStacked: true
+                  };
+
+                  var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+                  chart.draw(data, options);
+                }
+              });
+    }
+  }]);
+</script>
+
+</body>
+</html>
