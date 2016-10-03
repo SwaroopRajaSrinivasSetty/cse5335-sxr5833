@@ -74,6 +74,7 @@
                 var mapOptions = {
                   zoom: 6,
                   center: new google.maps.LatLng(31.0000, -97.0000),
+                  scrollwheel: false,
                   mapTypeId: google.maps.MapTypeId.TERRAIN
                 }
                 //intialize the maps obj
@@ -133,6 +134,10 @@
                     title: ' Population of various cities in Texas',
                     width: 600,
                     height: 400,
+                    animation:{
+                      duration: 1000,
+                      easing: 'out',
+                    },
                     bar: {groupWidth: "95%"},
                     legend: { position: 'top'},
                     hAxis: {

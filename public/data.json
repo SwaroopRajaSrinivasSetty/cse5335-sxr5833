@@ -4,72 +4,72 @@
       "Name":"Karen Futterkiste",
       "City":"San Antonio",
       "State":"Texas",
-      "lat":"29.4817349",
-      "lng":"-98.7946089",
+      "lat":"29.4169834",
+      "lng":"-98.481003",
       "population":"1409019"
     },
     {
       "Name":"Micheal helados",
       "City":"Dallas",
       "State":"Texas",
-      "lat":"32.8203525",
-      "lng":"-97.0115381",
+      "lat":"32.7775444",
+      "lng":"-96.7922309",
       "population":"7102796"
     },
     {
       "Name":"John Horn",
       "City":"Plano",
       "State":"Texas",
-      "lat":"33.0612425",
-      "lng":"-96.8066662",
+      "lat":"33.0210165",
+      "lng":"-96.6964356",
       "population":"379577"
     },
     {
       "Name":"Ben snabbköp",
       "City":"Houston",
       "State":"Texas",
-      "lng":"-95.6814957",
-      "lat":"29.8174782",
+      "lat":"29.7507604",
+      "lng":"-95.3642892",
       "population":"6490180"
     },
     {
       "Name":"Blondel fils",
       "City":"Fort Worth",
       "State":"Texas",
-      "lat":"32.800501",
-      "lng":"-97.5695176",
+      "lat":"32.7496755",
+      "lng":"-97.3300373",
       "population":"792727"
     },
     {
       "Name":"Bólido Comidas",
       "City":"Abilene",
       "State":"Texas",
-      "lng":"-99.876465",
-      "lat":"32.4838089",
+      "lat":"32.4403892",
+      "lng":"-99.7427284",
       "population":"673433"
     },
     {
       "Name":"Dollar Marketse",
       "City":"Corpus Christi",
       "State":"Texas",
-      "lat":"27.7039825",
-      "lng":"-97.6603671",
+      "lat":"27.762372",
+      "lng":"-97.416210",
       "population":"316381"
     },
     {
       "Name":"Cactus llevar",
       "City":"Galveston",
       "State":"Texas",
-      "lat":"29.2189728",
-      "lng":"-95.0666381",
+      "lat":"29.3029263",
+      "lng":"-94.7889819",
       "population":"48733"
     },
     {
       "Name":"Chop Chinese",
       "City":"Beaumont",
       "State":"Texas",
-      "lat":"30.0810663",
-      "lng":"-94.2686767",
+      "lat":"30.0854148",
+      "lng":"-94.1433601",
       "population":"196429"
 
     },
@@ -77,8 +77,8 @@
       "Name":"Comércio Mineiro",
       "City":"Austin",
       "State":"Texas",
-      "lng":"-98.0336054",
-      "lat":"30.3080553",
+      "lng":"-97.7362454",
+      "lat":"30.2849185",
       "population":"885400"
     }
   ]
