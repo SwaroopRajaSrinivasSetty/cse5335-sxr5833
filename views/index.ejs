@@ -68,12 +68,13 @@
   var app = angular.module('myApp', []);
   app.controller('customersCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.clickButton = function() {
-      console.log('here');
+      // Reference : http://www.w3schools.com/angular/angular_tables.asp
       $http.get("data.json")
               .then(function (response) {
                 $scope.names = response.data.records;
 
                 //google maps
+                // Reference : http://jsfiddle.net/pc7Uu/854/
                 var mapOptions = {
                   zoom: 6,
                   center: new google.maps.LatLng(31.0000, -97.0000),
@@ -114,6 +115,7 @@
                 }
 
                 //google charts
+                // Reference : https://developers.google.com/chart/interactive/docs/gallery/barchart
                 google.charts.load('current', {packages: ['corechart', 'bar']});
                 google.charts.setOnLoadCallback(drawBasic);
 
