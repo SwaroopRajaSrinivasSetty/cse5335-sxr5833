@@ -16,4 +16,4 @@
   No other componenets installed.
   
 #### f. What Ubuntu commands are required to deploy and run your server?
-  I did not run any commands on the cli to deploy the app. From Herouku GUI I chose Github deployment method, connected my app to the project repository, selected the branch and clicked on "Deploy Branch". Herouku ran all the necessary commands in background and deployed the app. 
+  I did not run any commands on the cli to deploy the app. From Herouku GUI I chose Github deployment method, connected my app to the project repository, selected the branch and clicked on "Deploy Branch". Herouku ran all the necessary commands in background and deployed the app. The app is deployed at https://cse5335-sxr5833.herokuapp.com/
